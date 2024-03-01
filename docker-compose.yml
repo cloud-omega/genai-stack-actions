@@ -227,11 +227,10 @@ services:
       - traefik.http.routers.ptn_${SITE_PATH}.rule=Host(`${DOMAIN_NAME}`)
     networks: 
       - proxy_default
+      - ainet
     depends_on:
       api:
         condition: service_healthy
-    networks:
-      - ainet
     #ports:      - 8505:8505
 
 networks:
