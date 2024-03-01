@@ -8,10 +8,11 @@ jobs:
   run:
     runs-on: self-hosted
     env:
+      TZ: ${{ env.TZ }}
       SITE_PATH: ${{ github.event.repository.name }}
       DOMAIN_NAME: ${{ secrets.GR_URL }}
-      NEO4J_DATA: ${{ secrets.GENAI_VOL_NEO4JDATA }}
-      VOL_EMB: ${{ secrets.GENAI_VOL_EMB }}
+      NEO4J_DATA: ${{ env.GENAI_VOL_NEO4JDATA }}
+      VOL_EMB: ${{ env.GENAI_VOL_EMB }}
       NEO4J_USERNAME: ${{ secrets.GENAI_NEO4J_USERNAME }}
       NEO4J_PASSWORD: ${{ secrets.GENAI_NEO4J_PASSWORD }}
       LLM: ${{ secrets.GENAI_OLLAMA }}
@@ -34,7 +35,7 @@ jobs:
 
       - name: Stop Docker Compose
         if: always()
-        run: docker compose down --remove-orphans
+        run: docker compose down --remove-orphans -v
         
       - name: Run Docker Compose Up
         run: docker compose up -d --wait
