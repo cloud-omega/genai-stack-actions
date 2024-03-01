@@ -10,12 +10,21 @@ jobs:
     env:
       SITE_PATH: ${{ github.event.repository.name }}
       DOMAIN_NAME: ${{ secrets.GR_URL }}
-      VOL_DATABASE: ${{ secrets.VOL_NEO4J }}
-      VOL_EMB: ${{ secrets.VOL_EMB }}
+      NEO4J_DATA: ${{ secrets.GENAI_VOL_NEO4JDATA }}
+      VOL_EMB: ${{ secrets.GENAI_VOL_EMB }}
+      NEO4J_USERNAME: ${{ secrets.GENAI_NEO4J_USERNAME }}
+      NEO4J_PASSWORD: ${{ secrets.GENAI_NEO4J_PASSWORD }}
+      LLM: ${{ secrets.GENAI_OLLAMA }}
+      EMBEDDING_MODEL: "ollama"
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
+      LANGCHAIN_TRACING_V2: true
+      LANGCHAIN_PROJECT: ${{ secrets.LANGCHAIN_PROJECT }}
+      LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
     steps:
       - uses: actions/checkout@v3
 
-      #- name: Login to Docker Hub (optional)
+      #- n  ame: Login to Docker Hub (optional)
       #  run: |
       #    echo "$DOCKER_HUB_USERNAME:$DOCKER_HUB_PASSWORD" | docker login --username --password-stdin
 
