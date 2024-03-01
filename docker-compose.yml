@@ -7,7 +7,6 @@ services:
       - ainet
 
   pull-model:
-    image: genai-stack/pull-model:latest
     build:
       context: .
       dockerfile: pull_model.Dockerfile
