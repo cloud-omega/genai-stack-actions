@@ -19,8 +19,7 @@ services:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL-http://llm:11434}
       - LLM=${LLM-llama2}
     depends_on:
-      llm:
-        condition: service_completed_successfully
+      - llm
     networks:
       - ainet
     tty: true
