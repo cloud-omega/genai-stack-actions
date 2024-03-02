@@ -17,10 +17,10 @@ jobs:
       LLM: ${{ secrets.GENAI_OLLAMA }}
       EMBEDDING_MODEL: "ollama"
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
-      LANGCHAIN_TRACING_V2: true
-      LANGCHAIN_PROJECT: ${{ secrets.LANGCHAIN_PROJECT }}
-      LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
+      #LANGCHAIN_ENDPOINT: "https://api.smith.langchain.com"
+      #LANGCHAIN_TRACING_V2: true
+      #LANGCHAIN_PROJECT: ${{ secrets.LANGCHAIN_PROJECT }}
+      #LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
     steps:
       - uses: actions/checkout@v3
 
