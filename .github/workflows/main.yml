@@ -22,7 +22,7 @@ jobs:
       #LANGCHAIN_PROJECT: ${{ secrets.LANGCHAIN_PROJECT }}
       #LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
 
       #- n  ame: Login to Docker Hub (optional)
       #  run: |
