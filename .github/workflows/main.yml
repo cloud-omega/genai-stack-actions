@@ -31,7 +31,7 @@ jobs:
 
       - name: Prepare
         if: always()
-        run: mkdir -p $NEO4J_DATA && mkdir -p VOL_EMB
+        run: mkdir -p $NEO4J_DATA && mkdir -p VOL_EMB/model && mkdir -p VOL_EMB/embed
         
       - name: Update Docker Compose
         if: always()
@@ -42,4 +42,4 @@ jobs:
         run: docker compose down --remove-orphans 
         
       - name: Run Docker Compose Up
-        run:  docker compose --profile linux up -d --wait
+        run:  docker compose up -d --wait
