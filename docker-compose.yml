@@ -26,12 +26,13 @@ services:
   database:
     container_name: database
     restart: unless-stopped
-    image: bitnami/neo4j:latest #neo4j:5.11
+    image: neo4j:ubi9 #:5.11 # bitnami/neo4j:latest 
     volumes:
-      - neo4jdb:/bitnami
+      - neo4jdb:/data
+      #- neo4jdb:/bitnami
     environment:
       - NEO4J_AUTH=${NEO4J_USERNAME-neo4j}/${NEO4J_PASSWORD-password}
-      - NEO4J_PASSWORD=${NEO4J_PASSWORD-password}
+      #- NEO4J_PASSWORD=${NEO4J_PASSWORD-password}
       - NEO4J_PLUGINS=["apoc"]
       - NEO4J_db_tx__log_rotation_retention__policy=false
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
