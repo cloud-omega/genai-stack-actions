@@ -3,7 +3,6 @@ services:
   llm: &llm
     container_name: llm
     image: ollama/ollama:latest
-    profiles: ["linux"]
     restart: unless-stopped
     networks:
       - ainet
