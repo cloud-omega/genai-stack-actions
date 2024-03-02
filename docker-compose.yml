@@ -7,6 +7,8 @@ services:
     restart: unless-stopped
     networks:
       - ainet
+    volumes:
+      - model:/root/.ollama
 
   pull-model:
     container_name: pull-model
@@ -17,6 +19,9 @@ services:
     environment:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL-http://llm:11434}
       - LLM=${LLM-llama2}
+    depends_on:
+      llm:
+        condition: service_completed_successfully
     networks:
       - ainet
     tty: true
@@ -150,10 +155,10 @@ services:
     networks:
       - ainet
     depends_on:
-      database:
-        condition: service_healthy
       pull-model:
         condition: service_completed_successfully
+      database:
+        condition: service_healthy
     x-develop:
       watch:
         - action: rebuild
@@ -257,5 +262,10 @@ volumes:
   embed:
      driver_opts:
            type: none
-           device: ${VOL_EMB}
+           device: "${VOL_EMB}/embed"
+           o: bind
+  model:
+     driver_opts:
+           type: none
+           device: "${VOL_EMB}/model"
            o: bind
