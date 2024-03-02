@@ -1,12 +1,14 @@
 services:
 
   llm: &llm
+    container_name: llm
     image: ollama/ollama:latest
     profiles: ["linux"]
     networks:
       - ainet
 
   pull-model:
+    container_name: pull-model
     build:
       context: .
       dockerfile: pull_model.Dockerfile
@@ -18,6 +20,7 @@ services:
     tty: true
 
   database:
+    container_name: database
     image: bitnami/neo4j:latest #neo4j:5.11
     volumes:
       - neo4jdb:/bitnami
@@ -157,6 +160,7 @@ services:
       - 8503:8503
 
   api:
+    container_name: api
     build:
       context: .
       dockerfile: api.Dockerfile
