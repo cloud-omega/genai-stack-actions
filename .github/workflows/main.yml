@@ -13,7 +13,6 @@ jobs:
       DOMAIN_NAME: ${{ secrets.GR_URL }}
       NEO4J_DATA: /opt/files/neo4jdata
       VOL_EMB: /opt/files/genai_emb
-      NEO4J_USERNAME: ${{ secrets.GENAI_NEO4J_USERNAME }}
       NEO4J_PASSWORD: ${{ secrets.GENAI_NEO4J_PASSWORD }}
       LLM: ${{ secrets.GENAI_OLLAMA }}
       EMBEDDING_MODEL: "ollama"
