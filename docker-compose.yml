@@ -4,11 +4,13 @@ services:
     container_name: llm
     image: ollama/ollama:latest
     profiles: ["linux"]
+    restart: unless-stopped
     networks:
       - ainet
 
   pull-model:
     container_name: pull-model
+    restart: unless-stopped
     build:
       context: .
       dockerfile: pull_model.Dockerfile
@@ -21,6 +23,7 @@ services:
 
   database:
     container_name: database
+    restart: unless-stopped
     image: bitnami/neo4j:latest #neo4j:5.11
     volumes:
       - neo4jdb:/bitnami
@@ -30,7 +33,8 @@ services:
       - NEO4J_db_tx__log_rotation_retention__policy=false
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
     healthcheck:
-        test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+        #test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+        test: ["CMD-SHELL", "neo4j-admin server status || exit 1"]
         interval: 15s
         timeout: 30s
         retries: 10
@@ -41,6 +45,7 @@ services:
     build:
       context: .
       dockerfile: loader.Dockerfile
+    restart: unless-stopped
     volumes:
       - embed:/embedding_model
     environment:
@@ -83,6 +88,7 @@ services:
     build:
       context: .
       dockerfile: bot.Dockerfile
+    restart: unless-stopped
     volumes:
       - embed:/embedding_model
     environment:
@@ -124,6 +130,7 @@ services:
     build:
       context: .
       dockerfile: pdf_bot.Dockerfile
+    restart: unless-stopped
     environment:
       - NEO4J_URI=${NEO4J_URI-neo4j://database:7687}
       - NEO4J_PASSWORD=${NEO4J_PASSWORD-password}
@@ -161,6 +168,7 @@ services:
 
   api:
     container_name: api
+    restart: unless-stopped
     build:
       context: .
       dockerfile: api.Dockerfile
