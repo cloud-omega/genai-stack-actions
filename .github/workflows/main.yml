@@ -8,11 +8,11 @@ jobs:
   run:
     runs-on: self-hosted
     env:
-      TZ: ${{ TZ }}
+      TZ: $TZ
       SITE_PATH: ${{ github.event.repository.name }}
       DOMAIN_NAME: ${{ secrets.GR_URL }}
-      NEO4J_DATA: ${{ GENAI_VOL_NEO4JDATA }}
-      VOL_EMB: ${{ GENAI_VOL_EMB }}
+      NEO4J_DATA: $GENAI_VOL_NEO4JDATA
+      VOL_EMB: $GENAI_VOL_EMB
       NEO4J_USERNAME: ${{ secrets.GENAI_NEO4J_USERNAME }}
       NEO4J_PASSWORD: ${{ secrets.GENAI_NEO4J_PASSWORD }}
       LLM: ${{ secrets.GENAI_OLLAMA }}
