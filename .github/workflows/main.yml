@@ -31,7 +31,7 @@ jobs:
 
       - name: Prepare
         if: always()
-        run: mkdir -p $NEO4J_DATA && mkdir -p VOL_EMB/model && mkdir -p VOL_EMB/embed
+        run: mkdir -p $NEO4J_DATA && mkdir -p $VOL_EMB/model && mkdir -p $VOL_EMB/embed
         
       - name: Update Docker Compose
         if: always()
