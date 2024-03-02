@@ -18,7 +18,6 @@ services:
     tty: true
 
   database:
-    user: neo4j:neo4j
     image: bitnami/neo4j:latest #neo4j:5.11
     volumes:
       - neo4jdb:/bitnami
