@@ -1,8 +1,14 @@
 name: Docker Compose Up for Production
 
 on:
-  push:
-    branches: [ production ]
+  workflow_dispatch:
+    inputs:
+      appdescription:
+        description: 'APP long description'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Run job'  
 
 jobs:
   run:
